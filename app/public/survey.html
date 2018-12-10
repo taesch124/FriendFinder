@@ -239,7 +239,6 @@
             event.preventDefault();
 
             if(!validateForm()) return;
-            console.log('submitting');
             
             let choices = $('select');
             let answers = [];
@@ -285,7 +284,7 @@
 
             let answers = $('.survey-question');
             for(let i = 0; i < answers.length; i++) {
-                if(!answers[0].value) {
+                if(!answers[i].value) {
                     $('#question-validation').text('All questions must be answered.');
                     $('#question-validation').removeClass('hidden');
                     validated = false;
