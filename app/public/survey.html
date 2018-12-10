@@ -12,7 +12,27 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    
+    <link href="https://fonts.googleapis.com/css?family=Overlock" rel="stylesheet">
     <style>
+
+        * {
+            font-family: 'Overlock', cursive;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .validation-text {
+            color: red !important;
+        }
+
+        .portrait {
+            width: 240px;
+            height: 240px;
+        }
+
         .card form {
             padding: 0 1rem 2rem 1rem;
         }
@@ -34,27 +54,30 @@
                 <div class="card">
                     <h2 class="card-panel indigo center-align">Friend Finder Survey</h2>
 
-                    <form class="form" method="POST" role="form">
+                    <form id="survey-form" class="form" method="POST" role="form">
                         <h4 class="center-align">About Me</h4>
                         
                         <div class="input-field">
                             <i class="material-icons prefix">account_circle</i>
                             <label for="name">Name (Required)</label>
-                            <input type="text" id="name" placeholder="Name">
+                            <span id="name-validation" class="validation-text helper-text hidden"></span>
+                            <input required="" aria-required="true" type="text" id="name" placeholder="Name" class="validate">
                         </div>
 
                         <div class="input-field">
                             <i class="material-icons prefix">add_a_photo</i>
                             <label for="profile-image">Image (Required)</label>
-                            <input type="text" id="profile-image" placeholder="Image URL">            
+                            <span id="image-validation" class="validation-text helper-text hidden"></span>
+                            <input required="" aria-required="true" type="text" id="profile-image" placeholder="Image URL" class="validate">            
                         </div>
 
                         <h4 class="center-align">Questions</h4>
+                        <p id="question-validation" class="center-align validation-text helper-text hidden"></p>
 
                         <div class="row">
                             <div class="input-field col m6">
                                 <p>1) You like your room/apartment/house to be spotless.</p>
-                                <select id="question-1">
+                                <select class="survey-question" id="question-1">
                                     <option value="" disabled selected>Select an option</option>
                                     <option value="5">5 (strongly agree)</option>
                                     <option value="4">4</option>
@@ -66,7 +89,7 @@
 
                             <div class="input-field col m6">
                                 <p>2) You would rather a night in than going out drinking.</p>
-                                <select id="question-2">
+                                <select class="survey-question" id="question-2">
                                     <option value="" disabled selected>Select an option</option>
                                     <option value="5">5 (strongly agree)</option>
                                     <option value="4">4</option>
@@ -80,8 +103,98 @@
                         
                         <div class="row">
                             <div class="input-field col m6">
-                                <p>2) You would rather read a book than watch a movie.</p>
-                                <select id="question-3">
+                                <p>3) You would rather read a book than watch a movie.</p>
+                                <select class="survey-question" id="question-3">
+                                    <option value="" disabled selected>Select an option</option>
+                                    <option value="5">5 (strongly agree)</option>
+                                    <option value="4">4</option>
+                                    <option value="3">3</option>
+                                    <option value="2">2</option>
+                                    <option value="1">1 (strongly disagree)</option>
+                                </select>
+                            </div>
+
+                            <div class="input-field col m6">
+                                <p>4) You use reason to come to a conclusion more than emotion.</p>
+                                <select class="survey-question" id="question-4">
+                                    <option value="" disabled selected>Select an option</option>
+                                    <option value="5">5 (strongly agree)</option>
+                                    <option value="4">4</option>
+                                    <option value="3">3</option>
+                                    <option value="2">2</option>
+                                    <option value="1">1 (strongly disagree)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="input-field col m6">
+                                <p>5) You are the life of the party.</p>
+                                <select class="survey-question" id="question-5">
+                                    <option value="" disabled selected>Select an option</option>
+                                    <option value="5">5 (strongly agree)</option>
+                                    <option value="4">4</option>
+                                    <option value="3">3</option>
+                                    <option value="2">2</option>
+                                    <option value="1">1 (strongly disagree)</option>
+                                </select>
+                            </div>
+
+                            <div class="input-field col m6">
+                                <p>6) You prefer variety to routine.</p>
+                                <select class="survey-question" id="question-6">
+                                    <option value="" disabled selected>Select an option</option>
+                                    <option value="5">5 (strongly agree)</option>
+                                    <option value="4">4</option>
+                                    <option value="3">3</option>
+                                    <option value="2">2</option>
+                                    <option value="1">1 (strongly disagree)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="input-field col m6">
+                                <p>7) You like to solve complex problems.</p>
+                                <select class="survey-question" id="question-7">
+                                    <option value="" disabled selected>Select an option</option>
+                                    <option value="5">5 (strongly agree)</option>
+                                    <option value="4">4</option>
+                                    <option value="3">3</option>
+                                    <option value="2">2</option>
+                                    <option value="1">1 (strongly disagree)</option>
+                                </select>
+                            </div>
+
+                            <div class="input-field col m6">
+                                <p>8) You prefer to lead than follow others.</p>
+                                <select class="survey-question" id="question-8">
+                                    <option value="" disabled selected>Select an option</option>
+                                    <option value="5">5 (strongly agree)</option>
+                                    <option value="4">4</option>
+                                    <option value="3">3</option>
+                                    <option value="2">2</option>
+                                    <option value="1">1 (strongly disagree)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="input-field col m6">
+                                <p>9) You dislike talking about yourself.</p>
+                                <select class="survey-question" id="question-9">
+                                    <option value="" disabled selected>Select an option</option>
+                                    <option value="5">5 (strongly agree)</option>
+                                    <option value="4">4</option>
+                                    <option value="3">3</option>
+                                    <option value="2">2</option>
+                                    <option value="1">1 (strongly disagree)</option>
+                                </select>
+                            </div>
+
+                            <div class="input-field col m6">
+                                <p>10) You feel comfortable around/talking to strangers.</p>
+                                <select class="survey-question" id="question-10">
                                     <option value="" disabled selected>Select an option</option>
                                     <option value="5">5 (strongly agree)</option>
                                     <option value="4">4</option>
@@ -97,6 +210,15 @@
                             <button class="btn waves-effect waves-light indigo" type="submit" id="submit-answers">Submit</button>
                         </div>
                     </form>
+
+                    <div class="hidden row" id="best-friend">
+                        <div class="col m8 offset-m2 center-align">
+                            <h4>Your New Best Friend</h4>
+                            <img class="portrait" id="best-friend-image" alt="Best friend portrait"></img>
+                            <h6>Name: <span id="best-friend-name"></span></h6>
+                            
+                        </div>
+                    </div>
                 </div>
 
                 <a href="/">Home</a>
@@ -109,16 +231,15 @@
     </div>  
 
     <script type="text/javascript">
-        var submitted = false;
-
         $(document).ready(function(){
             $('select').formSelect();
         });
 
         $('#submit-answers').on('click', function() {
             event.preventDefault();
-            if(submitted) return;
-            submitted = true;
+
+            if(!validateForm()) return;
+            console.log('submitting');
             
             let choices = $('select');
             let answers = [];
@@ -135,11 +256,45 @@
             $.get(baseUrl + 'api/friends') .then(data => {
                 $.post(baseUrl + 'api/friends', newFriend).then(data => {
                     console.log('Your new best friend is ' + data.name + '!');
-                    alert('Your new best friend is ' + data.name + '!');
+                    $('#survey-form').addClass('hidden');
+                    $('#best-friend-name').text(data.name);
+                    $('#best-friend-image').attr('src', data.image);
+                    $('#best-friend').removeClass('hidden');
                 });
             });
             
         });
+
+        function validateForm() {
+            let validated = true;
+            $('#name-validation').addClass('hidden');
+            $('#image-validation').addClass('hidden');
+            $('#question-validation').addClass('hidden');
+
+            if(!$('#name').val().trim()) {
+                $('#name-validation').text('Name must be entered');
+                $('#name-validation').removeClass('hidden');
+                validated = false;
+            }
+
+            if(!$('#profile-image').val().trim()) {
+                $('#image-validation').text('Image URL must be entered');
+                $('#image-validation').removeClass('hidden');
+                validated = false;
+            }
+
+            let answers = $('.survey-question');
+            for(let i = 0; i < answers.length; i++) {
+                if(!answers[0].value) {
+                    $('#question-validation').text('All questions must be answered.');
+                    $('#question-validation').removeClass('hidden');
+                    validated = false;
+                    break;
+                }
+            }
+
+            return validated;
+        }
     </script>
 </body>
 </html>

@@ -21,7 +21,6 @@ router.get('/friends/:name', (req, res) => {
 });
 
 router.post('/friends', (req, res) => {
-    console.log(req.body);
 
     let name = req.body.name;
     let image = req.body.image;
